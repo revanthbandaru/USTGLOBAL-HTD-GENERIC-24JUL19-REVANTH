@@ -1,0 +1,33 @@
+.content{
+    background-color: rgb(102, 247, 252);
+    height : 100px;
+}
+.content1{
+    background-color: rgb(219, 219, 65);
+    height :100px;
+    
+}
+table{
+    text-align: center;
+
+}
+body{
+    background-color: rgb(201, 185, 161);
+    
+}
+.container{
+    margin-top: 90px;
+}
+#size{
+    font-size: 14pt;
+}
+#but{
+width: 100%;
+background-color: rgb(58, 58, 187);
+}
+#naa{
+    background-color: rgb(27, 27, 155);
+}
+#signup{
+    width: 20px;
+}

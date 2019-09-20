@@ -1,0 +1,31 @@
+
+<table class="table-bordered table-hover mt-5 offset-md-3">
+    <thead class="bg-dark text-light">
+        <tr>
+            <td>index</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>ph no</td>
+            <td>update</td>
+            <td>delete</td>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr *ngFor= "let user of fireBase.users; index as i">
+        <td>{{i+1}}</td>
+        <td> {{user.name | titlecase}}</td>
+        <td>{{user.email | uppercase}}</td> 
+        <td>{{user.mobile | currency: 'INR'}}</td>
+        <td>
+                <button type= "submit" class= " btnbtn-outline-primary"
+                (click)="updateUser(user)">update</button>
+            </td>
+            <td>
+                    <button  class= "btn btn-danger"
+                    (click)= "deleteUser(user)">delete</button>
+                </td>
+    </tr>
+    </tbody>
+
+</table>

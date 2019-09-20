@@ -1,0 +1,26 @@
+div{
+    margin-left: 250px;
+    margin-right: 100px;
+    margin-top: 200px;
+}
+span{
+    display: inline-block;
+    margin: 8px;
+    box-shadow: 0 0 15px coral;
+    padding: 20px 25px;
+    animation: movement is infinite linear;
+}
+@keyframes movement{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(100px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+span:nth-child(1){
+    
+}

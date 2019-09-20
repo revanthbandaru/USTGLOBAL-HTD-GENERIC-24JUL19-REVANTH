@@ -1,0 +1,10 @@
+<div class="container mt-4">
+        <div class=" col-md-3 mt-4 float-left">
+            <div class="card card-body " *ngFor="let resipy of recipies">
+                <img src="{{resipy.img}}" alt=""class="card-img-top" (click)='sendResipy(resipy)'>
+                <h4 class="card-title">{{resipy.dishName}}</h4>
+            </div>
+        </div>
+                <app-resipy-details [resipyDetails]="resipyData"></app-resipy-details>
+    
+    </div>

@@ -1,0 +1,73 @@
+div{
+    margin-left: 250px;
+    margin-right: 100px;
+    margin-top: 200px;
+}
+span{
+    display: inline-block;
+    margin: 8px;
+    box-shadow: 0 0 15px coral;
+    padding: 20px 25px;
+    animation: movement 1s infinite linear;
+}
+@keyframes movement{
+    0%{
+        transform: translateY(0px)
+    }
+    50%{
+        transform: translateY(100px)
+    }
+    100%{
+        transform: translateY(0px)
+    }
+}
+span:nth-child(1){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: 0.1s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(2){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.2s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(3){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.3s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(4){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.4s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(5){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.5s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(6){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.6s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(7){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.7s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(8){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.8s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(9){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: o.9s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}
+span:nth-child(10){
+    background: linear-gradient(45deg, black, rgb(77, 139, 77));
+    animation-delay: 1s;
+    box-shadow: 0 0 15px rgb(0, 255, 191);
+}

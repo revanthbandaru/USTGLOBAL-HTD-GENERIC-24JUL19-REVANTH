@@ -1,0 +1,66 @@
+<div class="container-fluid " style="overflow:inherit;">
+    <div class="row">
+    <div class="col-md-3 mt-2 ml=2 ">
+      <div class="card">
+        <div class="card-body " id="left"  *ngFor="let news of entNews">
+                <h1 class="text-center">Lifestyle</h1>
+                <img src="{{news.urlToImage}}" alt="" class="card-img-top">
+                <h3>{{news.title}}</h3>
+                <p>{{news.description}}</p>
+                <a href="{{news.url}}" class="btn btn-primary">
+        
+                    click here for more info...
+                </a>
+               
+        
+                </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6 mt-2">
+        <div class="card">
+          <div class="card-body" id="center" *ngFor="let news of indianNews">
+              <h1 class="text-center">Talk of the town</h1>
+            <img src="{{news.urlToImage}}" alt="" class="card-img-top">
+            <h3>{{news.title}}</h3>
+            <p>{{news.description}}</p>
+            <a href="{{news.url}}" class="btn btn-primary">
+    
+                click here for more info...
+            </a>
+           
+          
+          
+          </div>
+        </div>
+      </div>
+      
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body" id="right"*ngFor="let news of sportsNews">
+                <h1 class="text-center">Lifestyle</h1>
+                <img src="{{news.urlToImage}}" alt="" class="card-img-top">
+                <h3>{{news.title}}</h3>
+                <p>{{news.description}}</p>
+                <a href="{{news.url}}" class="btn btn-primary">
+        
+                    click here for more info...
+                </a>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- --------------------------------------------------- -->
+<!-- <div class="col-md-6 offset-3">
+    <div class="card card-body col-md-12 mt-2" *ngFor="let news of indianNews">
+        <img src="{{news.urlToImage}}" alt="" class="card-img-top">
+        <h3>{{news.title}}</h3>
+        <p>{{news.description}}</p>
+        <a href="{{news.url}}" class="btn btn-primary">
+
+            click here for more info...
+        </a>
+    </div>
+</div> -->
+</div>

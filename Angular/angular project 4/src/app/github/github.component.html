@@ -1,0 +1,16 @@
+<table class="table table-bordered mt-5">
+    <thead>
+        <th>id</th>
+        <th>Avatar Url</th>
+        <th>Node Id</th>
+        <th>Url</th>
+    </thead>
+    <tbody>
+        <tr *ngFor='let i of user'>
+        <td>{{i.id}}</td>
+        <td><a href="{{i.avatar_url}}">{{i.avatar_url}}</a></td>
+        <td>{{i.node_id}}</td>
+        <td><a href="{{i.url}}">{{i.url}}</a></td>
+        </tr>
+    </tbody>
+</table>

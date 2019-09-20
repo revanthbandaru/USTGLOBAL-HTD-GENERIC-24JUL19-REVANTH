@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FORMS</title>
+    <style>
+        body{
+            margin-left: 25%;
+            margin-right: 50%;
+        }
+    </style>
+</head>
+<body>
+    <legend>
+        <fieldset>
+            <form action="" method="post">
+                <div>
+                    <label for="">User Name</label>
+                </div>
+                <div>
+                    <input  onkeyup="validateForm()" type="text" name="unm" id="unm" required>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                </div>
+                <DIV>
+                        <input onkeyup="validateForm()" type="password" name="psd" id="psd" required>
+                </DIV>
+                <br>
+                <div>
+                    <input type="submit" namme="loginsubmit" value="login" disabled>
+                </div>
+            </form>
+        </fieldset>
+    </legend>
+    <script src="/events/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<h2 class="text-center">Entertainment news!</h2>
+<div class="container">
+    <div class="card card-body col-md-6 offset-md-3 mt-5 float-left" *ngFor="let i of entertainment">
+        <img src="{{i.urlToImage}}" alt="" class="card-img-top">
+        <h3 class="text-center">{{i.name}}</h3>
+        <h4>{{i.title}}</h4>
+        <b><p>{{i.description}}</p></b>
+        <p>{{i.content}}</p>
+    </div>
+</div>
+

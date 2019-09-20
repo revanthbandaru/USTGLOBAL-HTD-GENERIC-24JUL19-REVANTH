@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card-card-body col-md-6 offset-3">
+<form action="" [formGroup]='registerForm' (ngSubmit)='printForm(registerForm)'>
+    <legend align="center">Form!!!</legend>
+
+    <div class="form-group">
+        <label for="">Candidate name</label>
+        <input type="text" class="form-control" id="" name = 'name' 
+        formControlName='name' placeholder="Input field"required>
+        <div *ngIf="name.touched && name.invalid">
+        <div class="bg-danger"*ngIf="name.errors.minlength" >minimum 5 characters</div>
+    </div>
+</div>
+    <div class="form-group">
+        <label for="">Email id</label>
+        <input type="email" class="form-control" id="" name="email" 
+        formControlName="email" placeholder="Input field">
+        <div  *ngIf='email.touched && email.invalid'>
+            <div  class="alert-alert-danger" *ngIf="email.errors.email">
+                revath
+            
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Mobile no.</label>
+        <input type="text" class="form-control" name="mobile" 
+        formControlName='mobile' id="" placeholder="Input field">
+        <div *ngIf="mobile.touched && mobile.invalid">
+            <div class="bg-danger" *ngIf="mobile.errors.minlength">
+                    not valid
+            </div>
+<div class="bg-success" *ngIf="mobile.errors.maxlength">mobile number succed</div>
+        </div>
+    </div>
+    
+    <button type="reset" class="btn btn-danger">Reset</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>

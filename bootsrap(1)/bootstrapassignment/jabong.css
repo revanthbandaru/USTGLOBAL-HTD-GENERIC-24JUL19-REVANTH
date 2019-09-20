@@ -1,0 +1,22 @@
+.navbar-nav.mr-auto{
+    margin-left: 20%;
+}
+#fst{
+    margin-left:930px;
+    font-size: 13px;
+    font-display :disabled;
+}
+#btn{
+margin-left:100px;
+}
+#shop{
+    width:1000px;
+    height:450px;
+}
+#women{
+    width:320px;
+    height:120px;
+}
+.input-group-prepend{
+    float: right;
+}

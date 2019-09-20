@@ -1,0 +1,22 @@
+.imag-div{
+    float: left;
+    border: 1px solid rgb(46, 37, 31);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 10px;
+}
+img{
+    width:200px;
+    height:250px;
+    transition: all 0.5s;
+}
+img:hover{
+    transform: scale(1.2,1.2);
+}
+.desc{
+    cursor: pointer;
+    color: rgb(34, 34, 133);
+    margin-top: 16px;
+    font-family: cursive;
+}
