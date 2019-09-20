@@ -1,0 +1,1868 @@
+			my sql
+			~~~~~
+
+1)how to create database?
+A) create database ustglobal;//craeting database
+=================================================
+2) show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              | 
+| performance_schema |
+| sys                |
+| ustglobal          |
++--------------------+
+===============================================
+3)query to use our database?
+A) use ustglobal;
+=======================================
+4)how to see table? 
+a)show tables;
+===========================
+5)write a query to create table?
+A)create table student(id int,name varchar(120),emailid varchar(150));
+====================================================
+6)to see whether the table created or not?
+A) show tables;
++---------------------+
+| Tables_in_ustglobal |
++---------------------+
+| student             |
++---------------------+
+1 row in set (0.00 sec)
+=================================================
+7)how to discribe the table?
+A)mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| emailid | varchar(150) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+============================================================
+8)write a query to drop the table?
+A)drop table student;
+9)write a query to drop database?
+A) drop database ustglobal;
+10)query to add column to the table?
+A)
+mysql> alter table student add address varchar(120);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add phone int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| email   | varchar(150) | YES  |     | NULL    |       |
+| address | varchar(120) | YES  |     | NULL    |       |
+| phone   | int(11)      | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+===========================================
+11)query to drop column from the table?
+A)mysql> alter table student drop phone;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+==============================================
+12)query to rename column name?
+A)alter table student change name studentname varchar(120);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int(11)      | YES  |     | NULL    |       |
+| studentname | varchar(120) | YES  |     | NULL    |       |
+| email       | varchar(150) | YES  |     | NULL    |       |
+| address     | varchar(120) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+==============================================================
+13)query to add column name?
+A)mysql> alter table student add address2 varchar(120);
+========================================================
+13)query to rename column name?
+A)> alter table student change address2 location varchar(120);
+============================================================
+14)query to drop column name?
+A) alter table student drop address;
+=====================================================
+15) query to rename table name?
+A) rename table student to student_info;
+================================================
+16)query to rename database?
+note:--
+====
+	we can not rename the database in the mysql 5.7
+========================================================
+			DDL
+			===
+17)query to insert a data?
+A)insert into student_info(id,studentname,email,location)values(101,'revanth','revanthsteyn@gmail.com','anantapur');
+================================================================================================
+18)query to check the data in the table?
+A) select * from student_info;
++------+-------------+------------------------+-----------+
+| id   | studentname | email                  | location  |
++------+-------------+------------------------+-----------+
+|  101 | revanth     | revanthsteyn@gmail.com | anantapur |
++------+-------------+------------------------+-----------
+====================================================================
+19)query to insert data without column names?
+A)insert into student_info values(102,'harinath','hari123@gmail.com','banglore');
+========================================================================
+20)query to insert data atleast 3 records at a time?
+A) insert into student_info values(103,'loknath','loknath91919@gmail.com','manglore'),(104,'vikram','vikram123@gmail.com','banglore');
+================================================================================================
+21)query to insert only specified values?
+A) insert into student_info(id,location)values(105,'pune');
+=============================================================================
+22)query to update rows of perticular column name?
+A) update student_info set location='banglore';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 5  Changed: 3  Warnings: 0
+
+mysql> select * from student_info;
++------+-------------+------------------------+----------+
+| id   | studentname | email                  | location |
++------+-------------+------------------------+----------+
+|  101 | revanth     | revanthsteyn@gmail.com | banglore |
+|  102 | harinath    | hari123@gmail.com      | banglore |
+|  103 | loknath     | loknath91919@gmail.com | banglore |
+|  104 | vikram      | vikram123@gmail.com    | banglore |
+|  105 | NULL        | NULL                   | banglore |
++------+-------------+------------------------+----------+
+==============================================================================
+23)query to delete data from table?
+a)
+mysql> delete from student;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.02 sec)
+=================================================================================
+24)query to insert data into table?
+A)mysql> insert into student values(103,'loknath','loknath91919@gmail.com','manglore'),(104,'vinay','vinay1234@gmail.com','anantapur'),(105,'vikram','vikramsimhareddy@gmail.com','vellore');
+==========================================================================================
+25)query to delete records in the table?
+A) truncate table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from student;
+===================================================================================
+26)query to retrive particular column name?
+A) select id,location from student;
++------+-----------+
+| id   | location  |
++------+-----------+
+|  103 | manglore  |
+|  104 | anantapur |                        //projection.
+|  105 | vellore   |
++------+-----------+
+====================================================================================
+				WHERE CLAUSE
+				============
+27)query to get id studentname from student table whose name is vikram?
+A)> select id,studentname from student
+    -> where studentname='vikram';
++------+-------------+
+| id   | studentname |
++------+-------------+
+|  105 | vikram      |
++------+-------------+
+================================================================================
+28)write a query to update vikrams location in the student table?
+A) update student set location='anantapur'
+    -> where studentname='vikram';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+-------------+----------------------------+-----------+
+| id   | studentname | email                      | location  |
++------+-------------+----------------------------+-----------+
+|  103 | loknath     | loknath91919@gmail.com     | manglore  |
+|  104 | vinay       | vinay1234@gmail.com        | anantapur |
+|  105 | vikram      | vikramsimhareddy@gmail.com | anantapur |
+|  101 | revanth     | revanthsteyn@gmail.com     | banglore  |
+|  102 | harinath    | harinath@gmail.com         | hyderabad |
++------+-------------+----------------------------+-----------+
+=============================================================================
+29)wAQ to delete vinays information from the student table?
+A) delete from student where id=104;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+-------------+----------------------------+-----------+
+| id   | studentname | email                      | location  |
++------+-------------+----------------------------+-----------+
+|  103 | loknath     | loknath91919@gmail.com     | manglore  |
+|  105 | vikram      | vikramsimhareddy@gmail.com | anantapur |
+|  101 | revanth     | revanthsteyn@gmail.com     | banglore  |
+|  102 | harinath    | harinath@gmail.com         | hyderabad |
++------+-------------+----------------------------+-----------+
+===================================================================================
+30)  creating table using constraints?
+A)create table revanth(id int,name varchar(150) not null,emailid varchar(110),primary key(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc revanth;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(150) | NO   |     | NULL    |       |
+| emailid | varchar(110) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+  //trying to insert same record.
+
+mysql> insert into revanth values(100487,'revanth','revanthsteyn@gmail.com');
+ERROR 1062 (23000): Duplicate entry '100487' for key 'PRIMARY'
+=========================================================================================
+31)WAQ to insert 
+A) insert into revanth values(123456,'revanth','revanthsteyn@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from revanth;
++--------+---------+------------------------+
+| id     | name    | emailid                |
++--------+---------+------------------------+
+| 100487 | revanth | revanthsteyn@gmail.com |
+| 123456 | revanth | revanthsteyn@gmail.com |
++--------+---------+------------------------+
+===============================================================================================
+32)WAQ to create table employee_info using constraints?
+A)
+mysql> create table employee(id int,name varchar(100) not null,emailid varchar(120),designation varchar(150),mobileno int,Age int,Dateofbirth date not null,dateofjoining date,salary double,deptid int,bloodgroup varchar(100),primary key(id));
+Query OK, 0 rows affected (0.02 sec)
+ desc employee_info;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int(11)      | NO   | PRI | NULL    |       |
+| name          | varchar(100) | NO   |     | NULL    |       |
+| emailid       | varchar(120) | YES  |     | NULL    |       |
+| designation   | varchar(150) | YES  |     | NULL    |       |
+| mobileno      | int(11)      | YES  |     | NULL    |       |
+| Age           | int(11)      | YES  |     | NULL    |       |
+| Dateofbirth   | date         | NO   |     | NULL    |       |
+| dateofjoining | date         | YES  |     | NULL    |       |
+| salary        | double       | YES  |     | NULL    |       |
+| deptid        | int(11)      | YES  |     | NULL    |       |
+| bloodgroup    | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+===========================================================================================================
+33)create employee_info table with 15 records?
+A) select * from employee_info;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================================================================    
+34)wAQ to display only name ,id,and bloodgroup (only) to be aliased from employee_info table? 
+A) select id,name,bloodgroup AS 'bg'from employee_info;
++-----+-----------+------+
+| id  | name      | bg   |
++-----+-----------+------+
+| 101 | revanth   | AB+  |
+| 102 | vikram    | B+   |
+| 103 | vinay     | AB-  |
+| 104 | prathap   | B-   |
+| 105 | pramod    | B+   |
+| 106 | vikas     | AB+  |
+| 107 | veeresh   | B-   |
+| 108 | himanshu  | O+   |
+| 109 | vibhav    | AB-  |
+| 110 | sheena    | O+   |
+| 111 | umesh     | B-   |
+| 112 | prathibha | A+   |
+| 113 | prathibha | O+   |
+| 114 | kavitha   | O-   |
+| 115 | kiranroy  | AB+  |
++-----+-----------+------+
+===============================================================================================
+35)WAQ to display employeename ,salary, designation and his annual salary?
+A)  select name,salary,designation,salary*12 as 'annual_sal' from employee_info;
++-----------+--------+--------------------+------------+
+| name      | salary | designation        | annual_sal |
++-----------+--------+--------------------+------------+
+| revanth   |  33000 | software_developer |     396000 |
+| vikram    |  90000 | HR                 |    1080000 |
+| vinay     |  20000 | clerk              |     240000 |
+| prathap   |  15000 | salesman           |     180000 |
+| pramod    |  15000 | Analyst            |     180000 |
+| vikas     |  70000 | HR                 |     840000 |
+| veeresh   |  23000 | tester             |     276000 |
+| himanshu  |  15000 | Analyst            |     180000 |
+| vibhav    |  15000 | salesman           |     180000 |
+| sheena    |  75000 | software_developer |     900000 |
+| umesh     |  19000 | salesman           |     228000 |
+| prathibha |  55500 | software_developer |     666000 |
+| prathibha |  25000 | clerk              |     300000 |
+| kavitha   |  35000 | tester             |     420000 |
+| kiranroy  | 157800 | software_developer |    1893600 |
++-----------+--------+--------------------+------------+
+==============================================================================================
+36)WAQ to give the alias name for all the columns present in your employee_info table?
+A)
+mysql> select id eid,name ename,designation roleofemp,mobileno phno,Age age,Dateofbirth DOB,dateofjoining DOJ,salary sal,deptid Did,bloodgroup bg from employee_info;
++-----+-----------+--------------------+-----------+------+------------+------------+--------+------+------+
+| eid | ename     | roleofemp          | phno      | age  | DOB        | DOJ        | sal    | Did  | bg   |
++-----+-----------+--------------------+-----------+------+------------+------------+--------+------+------+
+| 101 | revanth   | software_developer | 863959446 |   21 | 1998-04-03 | 2019-09-24 |  33000 |   10 | AB+  |
+| 102 | vikram    | HR                 | 899876549 |   34 | 1980-09-07 | 2001-11-24 |  90000 |   20 | B+   |
+| 103 | vinay     | clerk              | 789594456 |   21 | 1993-07-07 | 2010-07-14 |  20000 |   30 | AB-  |
+| 104 | prathap   | salesman           | 789578969 |   26 | 1993-09-21 | 2009-09-24 |  15000 |   40 | B-   |
+| 105 | pramod    | Analyst            | 789577899 |   26 | 1993-01-29 | 2001-12-20 |  15000 |   20 | B+   |
+| 106 | vikas     | HR                 | 789594456 |   30 | 1988-02-13 | 2004-12-30 |  70000 |   10 | AB+  |
+| 107 | veeresh   | tester             | 789578123 |   25 | 1994-09-21 | 2015-10-09 |  23000 |   20 | B-   |
+| 108 | himanshu  | Analyst            | 789577345 |   28 | 1991-09-19 | 2006-11-28 |  15000 |   40 | O+   |
+| 109 | vibhav    | salesman           | 689578969 |   31 | 1989-11-22 | 2008-09-11 |  15000 |   30 | AB-  |
+| 110 | sheena    | software_developer | 997577899 |   28 | 1991-05-23 | 2012-11-08 |  75000 |   40 | O+   |
+| 111 | umesh     | salesman           | 899578969 |   29 | 1990-07-21 | 2006-10-19 |  19000 |   30 | B-   |
+| 112 | prathibha | software_developer | 667577899 |   25 | 1994-08-24 | 2011-12-15 |  55500 |   10 | A+   |
+| 113 | prathibha | clerk              | 987577899 |   29 | 1992-05-17 | 2015-03-29 |  25000 |   40 | O+   |
+| 114 | kavitha   | tester             | 679578969 |   32 | 1988-04-13 | 2017-10-10 |  35000 |   30 | O-   |
+| 115 | kiranroy  | software_developer | 678543218 |   36 | 1984-08-12 | 2006-10-08 | 157800 |   10 | AB+  |
++-----+-----------+--------------------+-----------+------+------------+------------+--------+------+------+
+=======================================================================================================================
+37)WAQ to display the unique deptno from employee_info?
+A) select distinct deptid from employee_info;
++--------+
+| deptid |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
++--------+
+===========================================================
+38)WAQ to display the unique value of designation and as wll as dept id?
+A) select distinct deptid,designation from employee_info;
++--------+--------------------+
+| deptid | designation        |
++--------+--------------------+
+|     10 | software_developer |
+|     20 | HR                 |
+|     30 | clerk              |
+|     40 | salesman           |
+|     20 | Analyst            |
+|     10 | HR                 |
+|     20 | tester             |
+|     40 | Analyst            |
+|     30 | salesman           |
+|     40 | software_developer |
+|     40 | clerk              |
+|     30 | tester             |
++--------+--------------------+
+===============================================================================
+39)WAQ to display the unique value of designation and as wll as dept id and age?
+A) select distinct deptid,designation,Age from employee_info;
++--------+--------------------+------+
+| deptid | designation        | Age  |
++--------+--------------------+------+
+|     10 | software_developer |   21 |
+|     20 | HR                 |   34 |
+|     30 | clerk              |   21 |
+|     40 | salesman           |   26 |
+|     20 | Analyst            |   26 |
+|     10 | HR                 |   30 |
+|     20 | tester             |   25 |
+|     40 | Analyst            |   28 |
+|     30 | salesman           |   31 |
+|     40 | software_developer |   28 |
+|     30 | salesman           |   29 |
+|     10 | software_developer |   25 |
+|     40 | clerk              |   29 |  
+|     30 | tester             |   32 |
+|     10 | software_developer |   36 |
++--------+--------------------+------+
+========================================================================================
+40)WAQ to display the name, salary and salary is decrement by 5000?
+A) select name,salary-5000 as sal from employee_info;
++-----------+--------+
+| name      | sal    |
++-----------+--------+
+| revanth   |  28000 |
+| vikram    |  85000 |
+| vinay     |  15000 |
+| prathap   |  10000 |
+| pramod    |  10000 |
+| vikas     |  65000 |
+| veeresh   |  18000 |
+| himanshu  |  10000 |
+| vibhav    |  10000 |
+| sheena    |  70000 |
+| umesh     |  14000 |
+| prathibha |  50500 |
+| prathibha |  20000 |
+| kavitha   |  30000 |
+| kiranroy  | 152800 |
++-----------+--------+
+=================================================================================
+41)WAQ to display name, salary incremented by 5000?
+A)
+mysql> select name,salary+5000 as salincre from employee_info;
++-----------+----------+
+| name      | salincre |
++-----------+----------+
+| revanth   |    38000 |
+| vikram    |    95000 |
+| vinay     |    25000 |
+| prathap   |    20000 |
+| pramod    |    20000 |
+| vikas     |    75000 |
+| veeresh   |    28000 |
+| himanshu  |    20000 |
+| vibhav    |    20000 |
+| sheena    |    80000 |
+| umesh     |    24000 |
+| prathibha |    60500 |
+| prathibha |    30000 |
+| kavitha   |    40000 |
+| kiranroy  |   162800 |
++-----------+----------+
+=========================================================================
+42)WAQ to display sal per day?
+A) select name,salary/30 as salperday from employee_info;
++-----------+--------------------+
+| name      | salperday          |
++-----------+--------------------+
+| revanth   |               1100 |
+| vikram    |               3000 |
+| vinay     |  666.6666666666666 |
+| prathap   |                500 |
+| pramod    |                500 |
+| vikas     | 2333.3333333333335 |
+| veeresh   |  766.6666666666666 |
+| himanshu  |                500 |
+| vibhav    |                500 |
+| sheena    |               2500 |
+| umesh     |  633.3333333333334 |
+| prathibha |               1850 |
+| prathibha |  833.3333333333334 |
+| kavitha   | 1166.6666666666667 |
+| kiranroy  |               5260 |
++-----------+--------------------+
+======================================================================
+43)WAQ to display annual salary of the employee?
+A) select name,salary*12 as annual_sal from employee_info;
++-----------+------------+
+| name      | annual_sal |
++-----------+------------+
+| revanth   |     396000 |
+| vikram    |    1080000 |
+| vinay     |     240000 |
+| prathap   |     180000 |
+| pramod    |     180000 |
+| vikas     |     840000 |
+| veeresh   |     276000 |
+| himanshu  |     180000 |
+| vibhav    |     180000 |
+| sheena    |     900000 |
+| umesh     |     228000 |
+| prathibha |     666000 |
+| prathibha |     300000 |
+| kavitha   |     420000 |
+| kiranroy  |    1893600 |
++-----------+------------+
+====================================================================
+44)WAQ to divide10%3??
+A)select 10%3 from dual;
++------+
+| 10%3 |
++------+
+|    1 |
++------+
+=====================================================================
+45)WAQ to dipaly all the records excluding deptno 
+A)> select * from employee_info
+    -> where deptid!=10;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+======================================================================================================
+46)WAQ to display name,designation,mobileno,age and whose salary is greater than 25000?
+A)
+mysql> select name,designation,Age,mobileno,salary from employee_info
+    -> where salary>25000;
++-----------+--------------------+------+-----------+--------+
+| name      | designation        | Age  | mobileno  | salary |
++-----------+--------------------+------+-----------+--------+
+| revanth   | software_developer |   21 | 863959446 |  33000 |
+| vikram    | HR                 |   34 | 899876549 |  90000 |
+| vikas     | HR                 |   30 | 789594456 |  70000 |
+| sheena    | software_developer |   28 | 997577899 |  75000 |
+| prathibha | software_developer |   25 | 667577899 |  55500 |
+| kavitha   | tester             |   32 | 679578969 |  35000 |
+| kiranroy  | software_developer |   36 | 678543218 | 157800 |
++-----------+--------------------+------+-----------+--------+
+===========================================================================================
+47)WAQ to display name,designation,mobileno,age and whose salary is less than 25000?
+A) select name,designation,Age,mobileno,salary from employee_info
+    -> where salary <25000;
++----------+-------------+------+-----------+--------+
+| name     | designation | Age  | mobileno  | salary |
++----------+-------------+------+-----------+--------+
+| vinay    | clerk       |   21 | 789594456 |  20000 |
+| prathap  | salesman    |   26 | 789578969 |  15000 |
+| pramod   | Analyst     |   26 | 789577899 |  15000 |
+| veeresh  | tester      |   25 | 789578123 |  23000 |
+| himanshu | Analyst     |   28 | 789577345 |  15000 |
+| vibhav   | salesman    |   31 | 689578969 |  15000 |
+| umesh    | salesman    |   29 | 899578969 |  19000 |
++----------+-------------+------+-----------+--------+
+==================================================================
+48)wAQ to dispaly the salary less thn=15000 and greater than=20000?
+A) select * from employee_info
+    -> where salary<=15000;
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name     | emailid                | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 104 | prathap  | prathap1764@gmail.com  | salesman    | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod   | pramod2264@gmail.com   | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 108 | himanshu | himanshu7264@gmail.com | Analyst     | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav   | vibhav9764@gmail.com   | salesman    | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+====================================================================================================
+49)WAQ as above for greater than=20000?
+A)
+mysql> select * from employee_info
+    -> where salary>=20000;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=====================================================================================================================
+50)WAQ. to display all the records who is working in deptno 20 only in salary is>10000?
+A)> select * from employee_info
+    -> where deptid=20 and salary>10000;
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram  | vikram123@gmail.com   | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 105 | pramod  | pramod2264@gmail.com  | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh | veeresh1111@gmail.com | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+51)WAQ to display all the records of employee_info table who is working as salesman and dateofbirth is 1994?
+A) select * from employee_info
+    -> where designation='salesman'and Dateofbirth='1994-01-01';
+=====================================================================================
+52)WAQ to display all the records of employee_info table whose salary equalto 10000 as wellas job desognition is analyst?
+A) select * from employee_info
+    -> where salary =10000 and designation='analyst';
+Empty set
+========================================================================================================
+53)WAQ to display all the records who is working in deptno 20 or deptno 60?
+A) select * from employee_info where deptid=20 or deptid=60;
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram  | vikram123@gmail.com   | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 105 | pramod  | pramod2264@gmail.com  | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh | veeresh1111@gmail.com | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+===========================================================================================================
+54)WAQ to display name ,salary,emailid who is working as a tester or age is greater than 20?
+A) select name,emailid,salary from employee_info where designation = 'tester' or Age>20;
++-----------+-------------------------+--------+
+| name      | emailid                 | salary |
++-----------+-------------------------+--------+
+| revanth   | revanthsteyn@gmail.com  |  33000 |
+| vikram    | vikram123@gmail.com     |  90000 |
+| vinay     | vinay124@gmail.com      |  20000 |
+| prathap   | prathap1764@gmail.com   |  15000 |
+| pramod    | pramod2264@gmail.com    |  15000 |
+| vikas     | vikas144@gmail.com      |  70000 |
+| veeresh   | veeresh1111@gmail.com   |  23000 |
+| himanshu  | himanshu7264@gmail.com  |  15000 |
+| vibhav    | vibhav9764@gmail.com    |  15000 |
+| sheena    | sheena2264@gmail.com    |  75000 |
+| umesh     | umesh9764@gmail.com     |  19000 |
+| prathibha | prathibha2264@gmail.com |  55500 |
+| prathibha | prathibha2264@gmail.com |  25000 |
+| kavitha   | kavitha9764@gmail.com   |  35000 |
+| kiranroy  | kiranroy2264@gmail.com  | 157800 |
++-----------+-------------------------+--------+
+===================================================================================================
+55)WAQ to display the name of all employee who is working as a HR in deptid 30 or who is working as aclerk where salary > 10000?
+A)select name from employee_info
+    -> where designation='HR'and deptid=30
+    -> or designation='clerk'and salary>10000;
++-----------+
+| name      |
++-----------+
+| vinay     |
+| prathibha |
++-----------+
+===============================================================================================
+56)WAQ to display salary=10000 and designation software_deveoper?
+A)
+mysql> select salary,designation from employee_info
+    -> where salary=10000 and designation='software_developer';
+Empty set
+=======================================================================================================
+57)WAQ to display all records except the desigation of soft ware-developer?
+A) select * from employee_info where not designation='software_developer';
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram    | vikram123@gmail.com     | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk       | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman    | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR          | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst     | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman    | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 111 | umesh     | umesh9764@gmail.com     | salesman    | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk       | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester      | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+===============================================================================================================
+58)WAQ to display all the employee excluding deptid 20 or 30?
+A) select * from employee_info
+    -> where not (deptid=20 or deptid=30);
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=========================================================================================================
+59)WAQ to dispaly  all the employee details excluding salesman who all are working in deptid 40?
+A) select * from employee_info
+    -> where not (designation='salesman'and deptid=40);
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+60)WAQ to display all the employe details who is working as a salesman for deptid 20 or 30?
+A) > select * from employee_info
+    -> where designation='salesman'and (deptid=20 or deptid=30);
++-----+--------+----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name   | emailid              | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+--------+----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 109 | vibhav | vibhav9764@gmail.com | salesman    | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 111 | umesh  | umesh9764@gmail.com  | salesman    | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
++-----+--------+----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+61)WAQ to display all the employee who is working in deptid 20 only if their salary is greater than 10000 and less than 25000 including 10000 and 25000?
+A)  select * from employee_info
+    -> where deptid=20 and (salary >=10000 and salary <=25000);
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 105 | pramod  | pramod2264@gmail.com  | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh | veeresh1111@gmail.com | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+62)WAQ to display all the records who is working as a software_developer date of birth is 1994?
+A) > select * from employee_info
+    -> where designation='software_developer'and (Dateofbirth>'1994-01-01'and Dateofbirth<'1995-01-01');
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+63)WAQ to display  employee who is working in deptid 10 or 20 or 30?
+) select * from employee_info
+    -> where deptid=10 or deptid=20 or deptid=30;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+				(OR)
+select * from employee_info
+    -> where deptid IN(10,20,30);
+=====================================================================================================
+               				SPECIAL OPERATOR
+					----------------
+64)WAQ TO display 
+
+A) select * from employee_info
+    -> where deptid IN(10,20,30);
+=============================================================================================================
+=============================================================================================================
+63)WAQ to display all the employee_info details whose job designation is tester,Hr,analyst?
+A)  select * from employee_info
+    -> where designation in('tester','HR','analyst');
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name     | emailid                | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram   | vikram123@gmail.com    | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 105 | pramod   | pramod2264@gmail.com   | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas    | vikas144@gmail.com     | HR          | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh  | veeresh1111@gmail.com  | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu | himanshu7264@gmail.com | Analyst     | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 114 | kavitha  | kavitha9764@gmail.com  | tester      | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
++-----+----------+------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+=============================================================================================================
+63)WAQ to display all the employee_info details who are working as aclerk in dept 20 30 40 60 70?
+A)  select * from employee_info
+    -> where designation='clerk' and deptid in(10,20,30,40,50,60,70);
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 103 | vinay     | vinay124@gmail.com      | clerk       | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 113 | prathibha | prathibha2264@gmail.com | clerk       | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+ 
+=============================================================================================================
+=============================================================================================================
+63)WAQ to display all the employee_info details who are working as aclerk in excluding that dept 20 30 40 60 70?
+A)  select * from employee_info
+    -> where designation='clerk' and deptid not in(10,20,30,60,70);
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 113 | prathibha | prathibha2264@gmail.com | clerk       | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
++-----+-----------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================
+64)WAQ to display all the detail of employee who are working in deptid 20,40,60 excluding the salesman,or analyst?
+A) select * from employee_info
+    -> where deptid in(20,40,60) and designation not in('salesman','analyst');
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+65)WAQ to display all the details of employee whose salary in the range of 20000 to 50000?
+A) select * from employee_info
+    -> where salary between 20000 and 50000;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+66)WAQ to display all the details ofthe employee who heired in 2017?
+A) select * from employee_info
+    -> where Dateofjoining between '2017-01-01' and '2018-01-01';
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 114 | kavitha | kavitha9764@gmail.com | tester      | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+67)WAQ to display all the records of the employee excluding who is hiered in 2019?
+A) select * from employee_info
+    -> where dateofjoining not between '2019-01-01' and '2019-12-31';
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+68)WAQ to display employeename salary and deptid of all the employee who is working in deptid 10 or 20 excluding employee whose salary is greater than or equal to 15k and lessthan or equal to 50k?
+A) select name,salary,deptid from employee_info
+    -> where deptid in(10,20) and salary not between 15000 and 50000;
++-----------+--------+--------+
+| name      | salary | deptid |
++-----------+--------+--------+
+| vikram    |  90000 |     20 |
+| vikas     |  70000 |     10 |
+| prathibha |  55500 |     10 |
+| kiranroy  | 157800 |     10 |
++-----------+--------+--------+
+==========================================================================================================================================
+69)WAQ to display employee name and annual salary if his designation is null?
+A)  select name,salary*12 annualsal from employee_info
+    -> where designation is null;
++------------+-----------+
+| name       | annualsal |
++------------+-----------+
+| vijaykumar |    252000 |
++------------+-----------+
+==========================================================================================================================================
+70)WAQ to display employee name and annual salary if his designation is not   null?
+
+A) select name,salary*12 annualsal from employee_info
+    -> where designation is not null;
++-----------+-----------+
+| name      | annualsal |
++-----------+-----------+
+| revanth   |    396000 |
+| vikram    |   1080000 |
+| vinay     |    240000 |
+| prathap   |    180000 |
+| pramod    |    180000 |
+| vikas     |    840000 |
+| veeresh   |    276000 |
+| himanshu  |    180000 |
+| vibhav    |    180000 |
+| sheena    |    900000 |
+| umesh     |    228000 |
+| prathibha |    666000 |
+| prathibha |    300000 |
+| kavitha   |    420000 |
+| kiranroy  |   1893600 |
+| vijay     |    252000 |
++-----------+-----------+
+==========================================================================================================================================
+71)WAQ to display all the details of the employee whose name starts with 's'?
+A) select * from employee_info
+    -> where name like 's%';
++-----+--------+----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name   | emailid              | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+--------+----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 110 | sheena | sheena2264@gmail.com | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
++-----+--------+----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+72)WAQ to display all the details of the employee whose name contains only 5character?
+A) select * from employee_info
+    -> where name like'_____';
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name  | emailid             | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 103 | vinay | vinay124@gmail.com  | clerk       | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 106 | vikas | vikas144@gmail.com  | HR          | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 111 | umesh | umesh9764@gmail.com | salesman    | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 116 | vijay | vijay@gmail.com     | tester      |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+73)WAQ to display name,salary,DOB,DOj,Age whose name starts with 's' and end with 's'
+A)select name,age,Dateofbirth,dateofjoining,salary from employee_info
+    -> where name like's%s';
+==========================================================================================================================================
+74)WAQ to display all the record of the employee whose second character is 'p';
+A)select * from employee_info
+    -> where name like'_p%';
+==========================================================================================================================================
+75)WAQ to display all the information of the employee where designation have atleast 2ee?
+A) select * from employee_info
+    -> where designation like '%e%e%';
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
+| 116 | vijay     | vijay@gmail.com         | tester             |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+76)WAQ to select all the string of length 5 the name starts with s and second last character of the string is l?
+A) select * from employee_info
+    -> where designation like 's__l_';
+==========================================================================================================================================
+77)WAQ to display all the details of the employee if the name of the employee starts with 'r' character or starts with 'z'?
+A) select * from employee_info
+    -> where name like'r%'or name like'z%';
++-----+---------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid                | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth | revanthsteyn@gmail.com | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
++-----+---------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+78)WAQ to display all the record of employee whose names the 3 character should be 'c' and 6 character should be 'i'?
+A) select *  from employee_info
+    -> where name like'__c__i%';
+==========================================================================================================================================
+79)WAQ to display all the records whose name starts with 'a'
+A) select *  from employee_info
+    -> where name not like'a%';
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram     | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay      | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap    | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod     | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas      | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu   | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav     | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena     |  sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh      | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha    | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
+| 116 | vijay      | vijay@gmail.com         | tester             |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 117 | vijaykumar | vijay@gmail.com         | NULL               |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=========================================={aggregate function}===================================================
+================================================================================================
+80)WAQ to display the average salary of the employee_info?
+A)
+mysql> select avg(salary) from employee_info;
++-------------------+
+| avg(salary)       |
++-------------------+
+| 41488.23529411765 |
++-------------------+
+1 row in set (0.02 sec)
+==========================================================================================================================================
+81)WAQ to display the maximum salary of all the employees?
+A) select max(salary) as maxofsalaryofemp from employee_info;
++------------------+
+| maxofsalaryofemp |
++------------------+
+|           157800 |
++------------------+
+==========================================================================================================================================
+82)WAQ to display the minimum salary of all the employees?
+A) select min(salary) as maxofsalaryofemp from employee_info;
++------------------+
+| minofsalaryofemp |
++------------------+
+|            15000 |
++------------------+
+==========================================================================================================================================
+83)WAQ to display the sum of the salary of all the employee?
+A) select sum(salary) from employee_info;
++-------------+
+| sum(salary) |
++-------------+
+|      705300 |
++-------------+
+==========================================================================================================================================
+84)WAQ to display the count of the employees in the employee_info table?
+A)> select count(salary) from employee_info;
++---------------+
+| count(salary) |
++---------------+
+|            17 |
++---------------+
+==========================================================================================================================================
+85)WAQ to display all the aggregate functions from the employee_info table?
+A) select avg(salary) as avgsalofemp,sum(salary) as sumofsalemp,max(salary) as maxsalofemp,min(salary) as minsalofemp,count(salary) countofemp from employee_info;
+ +-------------------+-------------+-------------+-------------+------------+
+| avgsalofemp       | sumofsalemp | maxsalofemp | minsalofemp | countofemp |
++-------------------+-------------+-------------+-------------+------------+
+| 41488.23529411765 |      705300 |      157800 |       15000 |         17 |
++-------------------+-------------+-------------+-------------+------------+
+==========================================================================================================================================
+86)WAQ to display the employee working in deptid 20?
+A) select * from employee_info where deptid=20;
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram  | vikram123@gmail.com   | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 105 | pramod  | pramod2264@gmail.com  | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh | veeresh1111@gmail.com | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+87)WAQ to display the employees earning more than rupess 2500?
+A) select * from employee_info where salary>2500;
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram     | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay      | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap    | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod     | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas      | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu   | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav     | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena     | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh      | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha    | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
+| 116 | vijay      | vijay@gmail.com         | tester             |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 117 | vijaykumar | vijay@gmail.com         | NULL               |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+88)WAQ to display the employee whose job type is software_developer?
+A) select * from employee_info where designation like 'software_developer';
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 110 | sheena     | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+89)WAQ to display the employee working in 10,20 & 40?
+A) select * from employee_info where deptid in(10,20,40);
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram     | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 104 | prathap    | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod     | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas      | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu   | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 110 | sheena     | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+90)WAQ to display the employee whose name starts with 's'?
+A) select * from employee_info where name like 's%';
++-----+------------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 110 | sheena     | sheena2264@gmail.com   | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 115 | sucharitha | kiranroy2264@gmail.com | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+------------+------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================================================
+91)WAQ to display the employee whose firstname is having letter 'l' as 2nd character?
+A) select * from employee_info where name like '_l%';
+Empty set (0.00 sec)
+==========================================================================================================
+92)WAQ to display the employee whose firstname is having atleast 2 'e' characters?
+A) select * from employee_info where name like '%e%e%';
++-----+---------+-----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 107 | veeresh | veeresh1111@gmail.com | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 110 | sheena  | sheena2264@gmail.com  | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
++-----+---------+-----------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+93)WAQ to display the employee whose lastname is having letter 'E' as the 2nd last character?
+A) select * from employee_info where name like '%e_';
+==========================================================================================================
+94)WAQ to display the employee who are having exactly 5chaarcters in the last name?
+A) select * from employee_info where name like '_____';
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name  | emailid             | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 103 | vinay | vinay124@gmail.com  | clerk       | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 106 | vikas | vikas144@gmail.com  | HR          | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 111 | umesh | umesh9764@gmail.com | salesman    | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 116 | vijay | vijay@gmail.com     | tester      |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+-------+---------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+95)WAQ to display the employee whose salary is in between 20000 and 30000?
+A)select * from employee_info where salary between 20000 and 30000;
++-----+------------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 103 | vinay      | vinay124@gmail.com      | clerk       | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk       | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 116 | vijay      | vijay@gmail.com         | tester      |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 117 | vijaykumar | vijay@gmail.com         | NULL        |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+------------+-------------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+96)WAQ to display the no. of employees had dateofjining after 2016?
+A)  select count(*) from employee_info where dateofjoining > '2016-01-01';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+==========================================================================================================
+97)WAQ to display the avg salary and the highest salary of dept 20 30 40 60?
+A)select avg(salary) as avgsal,max(salary) as maxsalary from employee_info
+    -> where deptid in(20,30,40,60);
++--------------------+-----------+
+| avgsal             | maxsalary |
++--------------------+-----------+
+| 31545.454545454544 |     90000 |
++--------------------+-----------+
+==========================================================================================================
+98)WAQ to display the date of first and last hierd employee?
+A) select min(dateofjoining) as firsthierd,max(dateofjoining) from employee_info;
++------------+--------------------+
+| firsthierd | max(dateofjoining) |
++------------+--------------------+
+| 2001-11-24 | 2019-09-24         |
++------------+--------------------+
+==========================================================================================================
+99)WAQ to display the employee names in lower upper and initcap case?
+A)> select upper(name) as name from employee_info;
++------------+
+| name       |
++------------+
+| REVANTH    |
+| VIKRAM     |
+| VINAY      |
+| PRATHAP    |
+| PRAMOD     |
+| VIKAS      |
+| VEERESH    |
+| HIMANSHU   |
+| VIBHAV     |
+| SHEENA     |
+| UMESH      |
+| PRATHIBHA  |
+| PRATHIBHA  |
+| KAVITHA    |
+| SUCHARITHA |
+| VIJAY      |
+| VIJAYKUMAR |
++------------+
+17 rows in set (0.01 sec)
+
+mysql> select lower(name) as name from employee_info;
++------------+
+| name       |
++------------+
+| revanth    |
+| vikram     |
+| vinay      |
+| prathap    |
+| pramod     |
+| vikas      |
+| veeresh    |
+| himanshu   |
+| vibhav     |
+| sheena     |
+| umesh      |
+| prathibha  |
+| prathibha  |
+| kavitha    |
+| sucharitha |
+| vijay      |
+| vijaykumar |
++------------+
+17 rows in set (0.00 sec)
+
+mysql> select initcap(name) as name from employee_info;
+ERROR 1305 (42000): FUNCTION ust.initcap does not exist
+========================================================================================================
+====================================-------CHARACTER MANIPULATION FUNCTION---------========================
+100)WAQ to display the length of employee names?
+A) select length(name) from employee_info;
++--------------+
+| length(name) |
++--------------+
+|            7 |
+|            6 |
+|            5 |
+|            7 |
+|            6 |
+|            5 |
+|            7 |
+|            8 |
+|            6 |
+|            6 |
+|            5 |
+|            9 |
+|            9 |
+|            7 |
+|           10 |
+|            5 |
+|           10 |
++--------------+
+==========================================================================================================
+101)WAQ to MERGE NAME AND SALARY?
+A) select concat(name,salary) from employee_info;
++---------------------+
+| concat(name,salary) |
++---------------------+
+| revanth33000        |
+| vikram90000         |
+| vinay20000          |
+| prathap15000        |
+| pramod15000         |
+| vikas70000          |
+| veeresh23000        |
+| himanshu15000       |
+| vibhav15000         |
+| sheena75000         |
+| umesh19000          |
+| prathibha55500      |
+| prathibha25000      |
+| kavitha35000        |
+| sucharitha157800    |
+| vijay21000          |
+| vijaykumar21000     |
++---------------------+
+==========================================================================================================
+102)WAQ to reverse employee names
+A) select reverse(name) from employee_info;
++---------------+
+| reverse(name) |
++---------------+
+| htnaver       |
+| markiv        |
+| yaniv         |
+| pahtarp       |
+| domarp        |
+| sakiv         |
+| hsereev       |
+| uhsnamih      |
+| vahbiv        |
+| aneehs        |
+| hsemu         |
+| ahbihtarp     |
+| ahbihtarp     |
+| ahtivak       |
+| ahtirahcus    |
+| yajiv         |
+| ramukyajiv    |
++---------------+
+==========================================================================================================
+103)WAQ to display thr name of all employee only the thtree characters?
+A) select substr(name,1,3) name from employee_info;
++------+
+| name |
++------+
+| rev  |
+| vik  |
+| vin  |
+| pra  |
+| pra  |
+| vik  |
+| vee  |
+| him  |
+| vib  |
+| she  |
+| ume  |
+| pra  |
+| pra  |
+| kav  |
+| suc  |
+| vij  |
+| vij  |
++------+
+==========================================================================================================
+104)WAQ to display all the names of the employee whose name begins with consonant?
+A) select * from employee_info where substr(name,1,1) not in('a','e','i','o','u');
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram     | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay      | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap    | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod     | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas      | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu   | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav     | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena     | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha    | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
+| 116 | vijay      | vijay@gmail.com         | tester             |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 117 | vijaykumar | vijay@gmail.com         | NULL               |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+105)WAQ to search the position of 'a' in the name column?
+A) select instr(name,'a') from employee_info;
++-----------------+
+| instr(name,'a') |
++-----------------+
+|               4 |
+|               5 |
+|               4 |
+|               3 |
+|               3 |
+|               4 |
+|               0 |
+|               4 |
+|               5 |
+|               6 |
+|               0 |
+|               3 |
+|               3 |
+|               2 |
+|               5 |
+|               4 |
+|               4 |
++-----------------+
+===========================================
+=====================================------------assignment-=-=222===============================================================
+106)WAQ to display all the details of the software_developerin deptid30?
+A) select * from employee_info
+    -> where designation='software_developer' and deptid=30;
+==========================================================================================================
+107)WAQ to display the list all the emplloyees
+A)
+==========================================================================================================
+108)WAQ to display the employee
+A)
+==========================================================================================================
+109)WAQ to display the employee
+A)
+==========================================================================================================
+110)WAQ to display the employee
+A)
+==========================================================================================================
+111)WAQ to display the employee
+A)
+==========================================================================================================
+112)WAQ to display the employee
+A)
+==========================================================================================================
+113)WAQ to display the employee
+A)
+==========================================================================================================
+114)WAQ to display the employee
+A)
+==========================================================================================================
+115)WAQ to display the employee
+A)
+==========================================================================================================
+116)WAQ to replace where 'a' is present in the name with 'z'?
+A) select replace(name,'a','z') from employee_info;
++-----------------------+
+| replace(name,'a','z') |
++-----------------------+
+| revznth               |
+| vikrzm                |
+| vinzy                 |
+| przthzp               |
+| przmod                |
+| vikzs                 |
+| veeresh               |
+| himznshu              |
+| vibhzv                |
+| sheenz                |
+| umesh                 |
+| przthibhz             |
+| przthibhz             |
+| kzvithz               |
+| suchzrithz            |
+| vijzy                 |
+| vijzykumzr            |
++-----------------------+
+==========================================================================================================
+117)WAQ to display the  no. of employee whose is working in deptid=20 and who is having salary greater than 15k?
+A) select count(*) from employee_info
+    -> where deptid=20 and salary>15000;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+==========================================================================================================
+     					GROUP BY CLAUSE!!
+					===============
+118)WAQ to display the highest salary of the employee in each deptid?
+A) select max(salary) highestsalary from employee_info
+    -> group by deptid;
++---------------+
+| highestsalary |
++---------------+
+|         21000 |
+|        157800 |
+|         90000 |
+|         35000 |
+|         75000 |
++---------------+
+==========================================================================================================
+119)WAQ to display no. of software_developer in each department?
+a) select count(*) from employee_info
+    -> where designation='software_developer'
+    -> group by deptid;
++----------+
+| count(*) |
++----------+
+|        3 |
+|        1 |
++----------+
+====================================================================================
+120)WAQ to display no. of employee heired on each date?
+A) select count(*) from employee_info
+    -> group by dateofjoining;
++----------+
+| count(*) |
++----------+
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        2 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
++----------+
+========================================================================================================
+121)WAQ to display minimum salary in each designtion?
+A) select min(salary) minisal,designation from employee_info group by designation;
++---------+--------------------+
+| minisal | designation        |
++---------+--------------------+
+|   21000 | NULL               |
+|   15000 | Analyst            |
+|   20000 | clerk              |
+|   70000 | HR                 |
+|   15000 | salesman           |
+|   33000 | software_developer |
+|   21000 | tester             |
++---------+--------------------+ 
+========================================================================================================
+122)WAQ to display deptid which has atleast 4 working employes?
+A) select count(*),deptid,designation from employee_info
+    -> group by deptid
+    -> having count(*)>=4;
++----------+--------+--------------------+
+| count(*) | deptid | designation        |
++----------+--------+--------------------+
+|        4 |     10 | software_developer |
+|        4 |     30 | clerk              |
+|        4 |     40 | salesman           |
++----------+--------+--------------------+
+		(or)
+ select count(*),deptid,designation from employee_info
+    -> group by deptid
+    -> having count(deptid)>=4;
++----------+--------+--------------------+
+| count(*) | deptid | designation        |
++----------+--------+--------------------+
+|        4 |     10 | software_developer |
+|        4 |     30 | clerk              |
+|        4 |     40 | salesman           |
++----------+--------+--------------------+
+========================================================================================================
+123)WAQ to display deptid which has total salary greater than 20K?
+A) select sum(salary) totalsal,deptid from employee_info
+    -> group by deptid
+    -> having sum(salary)>20000;
++----------+--------+
+| totalsal | deptid |
++----------+--------+
+|    42000 |   NULL |
+|   316300 |     10 |
+|   128000 |     20 |
+|    89000 |     30 |
+|   130000 |     40 |
++----------+--------+
+========================================================================================================
+124)WAQ to display deptid and avgsal of all the departments whose avg sal is >20000 excluding the employee whose name
+begins with 's'?
+A)select deptid,avg(salary) as avgsal from employee_info
+    -> where name not like 's%'
+    -> group by deptid
+    -> having avg(salary)>20000;
++--------+--------------------+
+| deptid | avgsal             | 
++--------+--------------------+
+|   NULL |              21000 |
+|     10 | 52833.333333333336 |
+|     20 | 42666.666666666664 |
+|     30 |              22250 |
++--------+--------------------+
+========================================================================================================
+125)WAQ to display all the results salary should be arranged in descending order?
+A) select * from employee_info
+    -> order by salary desc;
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name       | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 115 | sucharitha | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
+| 102 | vikram     | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 110 | sheena     | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 106 | vikas      | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 112 | prathibha  | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 114 | kavitha    | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 101 | revanth    | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 113 | prathibha  | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 107 | veeresh    | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 116 | vijay      | vijay@gmail.com         | tester             |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 117 | vijaykumar | vijay@gmail.com         | NULL               |      NULL | NULL | 2012-01-01  | 2012-01-01    |  21000 |   NULL | NULL       |
+| 103 | vinay      | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 111 | umesh      | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 104 | prathap    | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod     | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 108 | himanshu   | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav     | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
++-----+------------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+========================================================================================================
+126)WAQ to disp name designation ,doj, for all the employees who are wrking either one of the
+of the department 10 20 60 50 sort the records in descending order of their salary
+A) select name,dateofjoining,designation from employee_info
+    -> where deptid in(10,20,30,50,60)
+    -> order by salary desc;
++------------+---------------+--------------------+
+| name       | dateofjoining | designation        |
++------------+---------------+--------------------+
+| sucharitha | 2006-10-08    | software_developer |
+| vikram     | 2001-11-24    | HR                 |
+| vikas      | 2004-12-30    | HR                 |
+| prathibha  | 2011-12-15    | software_developer |
+| kavitha    | 2017-10-10    | tester             |
+| revanth    | 2019-09-24    | software_developer |
+| veeresh    | 2015-10-09    | tester             |
+| vinay      | 2010-07-14    | clerk              |
+| umesh      | 2006-10-19    | salesman           |
+| pramod     | 2001-12-20    | Analyst            |
+| vibhav     | 2008-09-11    | salesman           |
++------------+---------------+--------------------+
+========================================================================================================
+127)WAQ to display deptid along with no. of employee in it?
+A) select deptid, name from employee_info
+    -> group by deptid,name;
++--------+------------+
+| deptid | name       |
++--------+------------+
+|   NULL | vijay      |
+|   NULL | vijaykumar |
+|     10 | prathibha  |
+|     10 | revanth    |
+|     10 | sucharitha |
+|     10 | vikas      |
+|     20 | pramod     |
+|     20 | veeresh    |
+|     20 | vikram     |
+|     30 | kavitha    |
+|     30 | umesh      |
+|     30 | vibhav     |
+|     30 | vinay      |
+|     40 | himanshu   |
+|     40 | prathap    |
+|     40 | prathibha  |
+|     40 | sheena     |
++--------+------------+
+========================================================================================================
+128)WAQ to display all the details of employee whose designation is tester and software developer?
+A)
+========================================================================================================
+129)WAQ to display name of the employee who is working for research department?
+A) select * from employee_info
+    -> where deptid =(select deptid from department_info where dname='research');
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name    | emailid               | designation | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 102 | vikram  | vikram123@gmail.com   | HR          | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 105 | pramod  | pramod2264@gmail.com  | Analyst     | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 107 | veeresh | veeresh1111@gmail.com | tester      | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
++-----+---------+-----------------------+-------------+-----------+------+-------------+---------------+--------+--------+------------+
+========================================================================================================
+130)WAQ to display the name of the employee who is working in location which has atleast 1 'a' character in 
+its name?
+A)select name from employee_info
+    -> where deptid in(select deptid from department_info where location like '%a%');
++------------+
+| name       |
++------------+
+| revanth    |
+| prathap    |
+| vikas      |
+| himanshu   |
+| sheena     |
+| prathibha  |
+| prathibha  |
+| sucharitha |
++------------+
+========================================================================================================
+131)WAQ to obtain second maximum salary from employee_info table?
+A) select max(salary) from employee_info
+    -> where salary<(select max(salary) from employee_info);
++-------------+
+| max(salary) |
++-------------+
+|       90000 |
++-------------+
+========================================================================================================
+132)waq to display the third maximum salary?
+A) select max(salary) from employee_info
+    ->  where salary<(select max(salary) from employee_info
+    ->  where salary<(select max(salary) from employee_info));
++-------------+
+| max(salary) |
++-------------+
+|       75000 |
++-------------+
+=====================================================================================================
+ 133)waq TO DISPLAY all the records using cross_joins?
+A) select * from employee_info cross join department_info;
+===================================================================================================
+ 134)WAQ for the inner joins?
+A)select * from department_info left outer join employee_info on employee_info.deptid=department_info.deptid
+======================================================================================================
+ 135)WAQ for the left outer joins?
+A)select * from department_info left outer join employee_info on employee_info.deptid=department_info.deptid
+======================================================================================================
+  136)WAQ for the right outer joins?
+A)select * from department_info right outer join employee_info on employee_info.deptid=department_info.deptid
+====================================================================================================== 
+137)WAQ to create view and make changes through view?
+
+create view view_name
+A)CREATE
+    /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+    [DEFINER = { user | CURRENT_USER }]
+    [SQL SECURITY { DEFINER | INVOKER }]*/
+    VIEW `ust`.`revanth123` 
+  
+  AS
+    
+select * from employee_info where designation = 'software_developer';
+select * from revanth123;
+//updating with dml command.
+UPDATE revanth123 set designation = 'Software_developer';
+=====================================================================================================
+138)WAQ to undo the updated changes?
+set autocommit=0;//0=false.
+A)rollback;                         //before doing this first we have to change autocommit=0; 
+											//false.
+==================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
